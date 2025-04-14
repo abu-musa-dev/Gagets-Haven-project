@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "Excellent Quality!",
+    "review": "Exceeded my expectations in terms of quality and durability.",
+    "rating": 5,
+    "imageUrl": "https://i.imgur.com/5Afmqd4.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Good Product",
+    "review": "The product quality was as expected and it works well.",
+    "rating": 4,
+    "imageUrl": "https://i.imgur.com/XCIPVw2.png"
+  },
+  {
+    "id": 3,
+    "title": "Not Bad",
+    "review": "It’s decent for the price, but there are some improvements that could be made.",
+    "rating": 3,
+    "imageUrl": "https://i.imgur.com/uejEl6V.png"
+  },
+  {
+    "id": 4,
+    "title": "Could Be Better",
+    "review": "The quality wasn’t up to my expectations, especially considering the cost.",
+    "rating": 2,
+    "imageUrl": "https://i.imgur.com/m70Litj.png"
+  },
+  {
+    "id": 5,
+    "title": "Disappointed",
+    "review": "The product didn’t work as advertised, and I faced several issues.",
+    "rating": 1,
+    "imageUrl": "https://i.imgur.com/bbRmrub.png"
+  },
+  {
+    "id": 6,
+    "title": "Highly Recommended!",
+    "review": "Exceeded my expectations in terms of quality and durability.",
+    "rating": 5,
+    "imageUrl": "https://i.imgur.com/w6cKUk7.png"
+  },
+  {
+    "id": 7,
+    "title": "Great Value for Money",
+    "review": "For the price, this product offers great features and quality.",
+    "rating": 4,
+    "imageUrl": "https://i.imgur.com/x5QwhSE.png"
+  },
+  {
+    "id": 8,
+    "title": "Average Experience",
+    "review": "It does the job but doesn’t stand out in terms of quality.",
+    "rating": 3,
+    "imageUrl": "https://i.imgur.com/wx55C36.png"
+  },
+  {
+    "id": 9,
+    "title": "Poor Build Quality",
+    "review": "Felt flimsy and didn’t last long under regular use.",
+    "rating": 2,
+    "imageUrl": "https://i.imgur.com/HIEBX1l.png"
+  },
+  {
+    "id": 10,
+    "title": "Not Worth It",
+    "review": "The product was disappointing and didn’t match the description.",
+    "rating": 1,
+    "imageUrl": "https://i.imgur.com/8KcLT0m.png"
+  }
+]
