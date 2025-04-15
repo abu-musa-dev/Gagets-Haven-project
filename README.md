@@ -31,5 +31,5 @@ This project is a user-friendly platform for exploring and purchasing gadgets. I
 5. **Write and Read Reviews**
 
 ## Live URL
-
+https://gagets-haven.netlify.app/
 
