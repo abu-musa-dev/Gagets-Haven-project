@@ -7,7 +7,7 @@ import NotFound from "../pages/NotFound";
 import ProductDetails from "../pages/ProductDetails";
 import Reviews from "../pages/Reviews";
 import Statistics from "../pages/Statistics";
-// import Login from "../pages/Login";
+import Login from "../pages/Login";
 
 export const routes = createBrowserRouter([
     {
@@ -39,11 +39,11 @@ export const routes = createBrowserRouter([
                 element:<Statistics></Statistics>,
                 loader:()=>fetch('../data.json')
             },
-            // {
-            //     path:'login',
-            //     element:<Login></Login>
+            {
+                path:'login',
+                element:<Login></Login>
                
-            // },
+            },
             {
                
                     path:'dashboard/:section',
