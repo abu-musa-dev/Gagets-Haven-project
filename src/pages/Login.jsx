@@ -1,9 +1,7 @@
-// src/pages/Login.jsx
 import React, { useState } from 'react';
-import { signInWithPopup } from 'firebase/auth';
-// src/pages/Login.jsx
-import { auth, googleProvider, facebookProvider } from "../firebase"; // .js extension লাগবে না
-import { useNavigate } from 'react-router-dom';
+import { signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
+import { auth, googleProvider, facebookProvider } from "../firebase";
+import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const Login = () => {
@@ -13,6 +11,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    // এখানে Firebase email/password login logics থাকবে যদি দরকার হয়
     console.log(email, password);
   };
 
@@ -42,6 +41,22 @@ const Login = () => {
       });
   };
 
+  const handleResetPassword = () => {
+    if (!email) {
+      toast.error("Please enter your email first");
+      return;
+    }
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        toast.success("Password reset email sent!");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("Failed to send reset email");
+      });
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
@@ -65,6 +80,15 @@ const Login = () => {
             placeholder="Password"
             required
           />
+          <div className="text-right">
+            <button
+              type="button"
+              onClick={handleResetPassword}
+              className="text-sm text-violet-600 hover:underline"
+            >
+              Forgot password?
+            </button>
+          </div>
           <button
             type="submit"
             className="w-full bg-violet-700 text-white py-2 rounded-md hover:bg-violet-800 transition"
@@ -90,6 +114,13 @@ const Login = () => {
             </button>
           </div>
         </div>
+
+        <p className="mt-4 text-center text-sm text-gray-600">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-violet-700 hover:underline">
+            Register here
+          </Link>
+        </p>
       </div>
     </div>
   );
