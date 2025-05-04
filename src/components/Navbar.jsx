@@ -1,23 +1,32 @@
-import React, { useContext, useState } from "react";
-import { Toaster } from "react-hot-toast";
+import React, { useContext, useEffect, useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { allDataContext } from "../main";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../firebase"; // firebase.js থেকে import
 
 export default function Navbar() {
   const geturl = useLocation();
-  const navigate = useNavigate(); // ✅ useNavigate added here
-
+  const navigate = useNavigate();
   const { wishList, cartList } = useContext(allDataContext);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // For login state
+
+  const [user, setUser] = useState(null); // Firebase user
+
+  // 🔁 Real-time user check
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const getBGcolor = () => {
-    if (geturl.pathname === "/statistics") {
-      return ["bg-white", "text-gray-700"];
-    } else if (geturl.pathname === "/dashboard/wish") {
-      return ["bg-white", "text-gray-700"];
-    } else if (geturl.pathname === "/") {
-      return ["bg-violet-700", "text-white"];
-    } else if (geturl.pathname === "/dashboard/cart") {
+    if (
+      geturl.pathname === "/statistics" ||
+      geturl.pathname === "/dashboard/wish" ||
+      geturl.pathname === "/dashboard/cart"
+    ) {
       return ["bg-white", "text-gray-700"];
     } else {
       return ["bg-violet-700", "text-white"];
@@ -63,12 +72,21 @@ export default function Navbar() {
     </>
   );
 
-  // ✅ Updated function
+  // ✅ Login or Logout
   const handleLoginLogout = () => {
-    if (!isLoggedIn) {
-      navigate("/login"); // Redirect to login page
+    if (user) {
+      signOut(auth)
+        .then(() => {
+          setUser(null);
+          toast.success("Logout successful! 👋");
+          navigate("/");
+        })
+        .catch((error) => {
+          console.error("Logout error:", error);
+          toast.error("Logout failed!");
+        });
     } else {
-      setIsLoggedIn(false); // Logout
+      navigate("/login");
     }
   };
 
@@ -160,12 +178,12 @@ export default function Navbar() {
           <button
             onClick={handleLoginLogout}
             className={`h-9 w-9 flex items-center justify-center border ${
-              isLoggedIn ? "bg-red-500 text-white" : "text-violet-700 bg-white"
+              user ? "bg-red-500 text-white" : "text-violet-700 bg-white"
             } border-violet-700 rounded-full`}
           >
             <i
               className={`fa-solid ${
-                isLoggedIn ? "fa-right-from-bracket" : "fa-user"
+                user ? "fa-right-from-bracket" : "fa-user"
               }`}
             ></i>
           </button>

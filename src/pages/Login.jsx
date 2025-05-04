@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
-import { auth, googleProvider, facebookProvider } from "../firebase";
+import { auth, googleProvider, } from "../firebase";
 import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
@@ -28,18 +28,7 @@ const Login = () => {
       });
   };
 
-  const handleFacebookLogin = () => {
-    signInWithPopup(auth, facebookProvider)
-      .then(result => {
-        console.log(result.user);
-        toast.success("Logged in with Facebook!");
-        navigate('/');
-      })
-      .catch(error => {
-        console.error(error);
-        toast.error("Facebook login failed!");
-      });
-  };
+  
 
   const handleResetPassword = () => {
     if (!email) {
@@ -106,12 +95,7 @@ const Login = () => {
             >
               <i className="fa-brands fa-google mr-2"></i>Google
             </button>
-            <button
-              onClick={handleFacebookLogin}
-              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-            >
-              <i className="fa-brands fa-facebook mr-2"></i>Facebook
-            </button>
+            
           </div>
         </div>
 
